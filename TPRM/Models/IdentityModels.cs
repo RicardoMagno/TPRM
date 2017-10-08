@@ -29,5 +29,10 @@ namespace TPRM.Models
         {
             return new ApplicationDbContext();
         }
+        
+
+        public System.Data.Entity.DbSet<TPRM.Models.Servico> Servicos { get; set; }
+
+        public System.Data.Entity.DbSet<TPRM.Models.Empresa> Empresas { get; set; }
     }
 }

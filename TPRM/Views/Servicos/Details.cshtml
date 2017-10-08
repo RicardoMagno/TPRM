@@ -1,0 +1,42 @@
+﻿@model TPRM.Models.Servico
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Servico</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoServico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoServico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorServico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValorServico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescricaoServico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescricaoServico)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ServicoID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
