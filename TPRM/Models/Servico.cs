@@ -28,5 +28,7 @@ namespace TPRM.Models
         [Display(Name = "Breve Descrição do Serviço")]
         public string DescricaoServico { get; set; }
 
+        [Display(Name = "Disponível?")]
+        public bool DisponibilidadeServico { get; set; }
     }
 }

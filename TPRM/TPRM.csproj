@@ -209,6 +209,10 @@
     <Compile Include="Migrations\201710081454152_Inicial_2_1.Designer.cs">
       <DependentUpon>201710081454152_Inicial_2_1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710090159129_Inicial_2_2.cs" />
+    <Compile Include="Migrations\201710090159129_Inicial_2_2.Designer.cs">
+      <DependentUpon>201710090159129_Inicial_2_2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Empresa.cs" />
@@ -275,16 +279,16 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Servicos\Create.cshtml" />
-    <Content Include="Views\Servicos\Delete.cshtml" />
-    <Content Include="Views\Servicos\Details.cshtml" />
-    <Content Include="Views\Servicos\Edit.cshtml" />
-    <Content Include="Views\Servicos\Index.cshtml" />
     <Content Include="Views\Empresas\Create.cshtml" />
     <Content Include="Views\Empresas\Delete.cshtml" />
     <Content Include="Views\Empresas\Details.cshtml" />
     <Content Include="Views\Empresas\Edit.cshtml" />
     <Content Include="Views\Empresas\Index.cshtml" />
+    <Content Include="Views\Servicos\Create.cshtml" />
+    <Content Include="Views\Servicos\Delete.cshtml" />
+    <Content Include="Views\Servicos\Details.cshtml" />
+    <Content Include="Views\Servicos\Edit.cshtml" />
+    <Content Include="Views\Servicos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -313,6 +317,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710081454152_Inicial_2_1.resx">
       <DependentUpon>201710081454152_Inicial_2_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710090159129_Inicial_2_2.resx">
+      <DependentUpon>201710090159129_Inicial_2_2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
