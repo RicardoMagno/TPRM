@@ -22,5 +22,8 @@ namespace TPRM.Models
         [Required]
         [Display(Name = "Razão Social")]
         public string RazaoSocial { get; set; }
+        
+        public virtual ICollection<Servico> Servico { get; set; }
+
     }
 }

@@ -1,0 +1,26 @@
+﻿@model TPRM.Models.StatusFluxoTransacao
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>StatusFluxoTransacao</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DescricaoStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescricaoStatus)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.StatusID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

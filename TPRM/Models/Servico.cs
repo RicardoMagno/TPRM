@@ -14,8 +14,8 @@ namespace TPRM.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ServicoID { get; set; }
 
-        [Required]
-        [StringLength(30)]
+        [Required]        
+        [StringLength(30, MinimumLength = 3)]
         [Display(Name = "Tipo de Serviço")]
         public string TipoServico { get; set; }
 
@@ -24,7 +24,7 @@ namespace TPRM.Models
         public double ValorServico { get; set; }
 
         [Required]
-        [StringLength(200)]
+        [StringLength(200, MinimumLength = 10)]
         [Display(Name = "Breve Descrição do Serviço")]
         public string DescricaoServico { get; set; }
 
