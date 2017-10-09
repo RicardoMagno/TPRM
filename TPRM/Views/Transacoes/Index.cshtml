@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<TPRM.Models.Transacao>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Transações";
 }
 
-<h2>Index</h2>
+<h2>Transações</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Cadastrar Transação", "Create")
 </p>
 <table class="table">
     <tr>
@@ -19,15 +19,15 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Servico.TipoServico)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StatusTransacao.DescricaoStatus)
-        </th>
+        </th>        
         <th>
             @Html.DisplayNameFor(model => model.ValorTransacao)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DescricaoTransacao)
+        </th>  
+        <th>
+            @Html.DisplayNameFor(model => model.StatusTransacao.DescricaoStatus)
         </th>
         <th></th>
     </tr>
@@ -42,15 +42,15 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Servico.TipoServico)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StatusTransacao.DescricaoStatus)
-        </td>
+        </td>        
         <td>
             @Html.DisplayFor(modelItem => item.ValorTransacao)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DescricaoTransacao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusTransacao.DescricaoStatus)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.TransacaoID }) |

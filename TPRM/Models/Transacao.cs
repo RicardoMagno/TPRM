@@ -11,6 +11,7 @@ namespace TPRM.Models
     public class Transacao
     {
         [Key]
+        [Column(Order = 0)]
         public int TransacaoID { get; set; }
 
         [ForeignKey("EmpresaContratante")]
@@ -31,16 +32,19 @@ namespace TPRM.Models
         public int TipoServicoID { get; set; }
 
         [Required]
+        [Column(Order = 4)]
         [DataType(DataType.Currency)]
         [Display(Name = "Valor da Transação")]
         public decimal ValorTransacao { get; set; }
 
         [Required]
+        [Column(Order = 5)]
         [Display(Name = "Descrição da Transação")]
         [StringLength(50, MinimumLength = 3)]
         public string DescricaoTransacao { get; set; }
 
         [ForeignKey("StatusTransacao")]
+        [Column(Order = 6)]
         [Display(Name = "Status Transação")]
         [Required]
         public int StatusTransacaoID { get; set; }
