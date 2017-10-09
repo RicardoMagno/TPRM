@@ -1,0 +1,63 @@
+﻿@model IEnumerable<TPRM.Models.Transacao>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EmpresaContratada.CNPJ)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmpresaContratante.CNPJ)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Servico.TipoServico)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusTransacao.DescricaoStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ValorTransacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescricaoTransacao)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpresaContratada.CNPJ)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpresaContratante.CNPJ)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Servico.TipoServico)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusTransacao.DescricaoStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ValorTransacao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescricaoTransacao)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TransacaoID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TransacaoID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TransacaoID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -16,8 +16,7 @@ namespace TPRM.Models
         [Required]
         [StringLength(50, MinimumLength = 3)]
         [Display(Name = "Descrição do Status")]
-        public string DescricaoStatus { get; set; }
-        
+        public string DescricaoStatus { get; set; }        
 
     }
 }
