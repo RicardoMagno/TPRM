@@ -109,10 +109,24 @@ namespace TPRM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Empresa empresa = db.Empresas.Find(id);
-            db.Empresas.Remove(empresa);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                Empresa empresa = db.Empresas.Find(id);
+                db.Empresas.Remove(empresa);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException ex)
+            {
+                return View("Error", new HandleErrorInfo(ex, "Empresas", "Index"));
+
+            }
+            catch (Exception e)
+            {
+                return View("Error", new HandleErrorInfo(e, "Empresas", "Index"));
+            }
+
+            
         }
 
         protected override void Dispose(bool disposing)

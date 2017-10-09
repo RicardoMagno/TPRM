@@ -274,7 +274,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
@@ -319,6 +318,7 @@
     <Content Include="Views\Transacoes\Details.cshtml" />
     <Content Include="Views\Transacoes\Edit.cshtml" />
     <Content Include="Views\Transacoes\Index.cshtml" />
+    <Content Include="Views\Empresas\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

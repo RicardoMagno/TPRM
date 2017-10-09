@@ -1,0 +1,10 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+}
+
+<h1 class="text-danger">Falha ao Excluir</h1>
+<h2 class="text-danger">A Empresa não poderá ser excluída pois existem dados atrelados a ela.</h2>
+
+@Html.ActionLink("Back to List", "Index")
