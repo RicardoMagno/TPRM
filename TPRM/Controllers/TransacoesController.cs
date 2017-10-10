@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using TPRM.Models;
 
 namespace TPRM.Controllers
@@ -39,6 +41,12 @@ namespace TPRM.Controllers
         // GET: Transacoes/Create
         public ActionResult Create()
         {
+            // TODO
+            var idUserLogged = User.Identity.GetUserId();
+            var usuarioEmpresa = from b in db.UsuarioEmpresas
+                        where b.ApplicationUserID.Equals(idUserLogged)  //.Name.StartsWith("B")
+                        select b;
+
             ViewBag.EmpresaContratadaID = new SelectList(db.Empresas, "EmpresaID", "RazaoSocial");
             ViewBag.EmpresaContratanteID = new SelectList(db.Empresas, "EmpresaID", "RazaoSocial");
             ViewBag.TipoServicoID = new SelectList(db.Servicos, "ServicoID", "TipoServico");
@@ -58,8 +66,8 @@ namespace TPRM.Controllers
                 db.Transacoes.Add(transacao);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
-
+            }            
+            
             ViewBag.EmpresaContratadaID = new SelectList(db.Empresas, "EmpresaID", "CNPJ", transacao.EmpresaContratadaID);
             ViewBag.EmpresaContratanteID = new SelectList(db.Empresas, "EmpresaID", "CNPJ", transacao.EmpresaContratanteID);
             ViewBag.TipoServicoID = new SelectList(db.Servicos, "ServicoID", "TipoServico", transacao.TipoServicoID);

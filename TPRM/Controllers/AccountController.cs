@@ -162,7 +162,7 @@ namespace TPRM.Controllers
 
                     var usuarioEmpresa = new UsuarioEmpresa
                     { ApplicationUserID = user.Id, EmpresaID = model.EmpresaID };
-                    UsuarioEmpresasController.Create(usuarioEmpresa, db);                    
+                    UsuarioEmpresasController.Create(usuarioEmpresa, db);
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
