@@ -154,11 +154,16 @@ namespace TPRM.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Name, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Name, Email = model.Email };                
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     UserManager.AddToRole(user.Id, "Cliente");
+
+                    var usuarioEmpresa = new UsuarioEmpresa
+                    { ApplicationUserID = user.Id, EmpresaID = model.EmpresaID };
+                    UsuarioEmpresasController.Create(usuarioEmpresa, db);                    
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

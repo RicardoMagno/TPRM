@@ -38,5 +38,8 @@ namespace TPRM.Models
         public System.Data.Entity.DbSet<TPRM.Models.StatusFluxoTransacao> StatusFluxoTransacoes { get; set; }
         
         public System.Data.Entity.DbSet<TPRM.Models.Transacao> Transacoes { get; set; }
+
+        public System.Data.Entity.DbSet<TPRM.Models.UsuarioEmpresa> UsuarioEmpresas { get; set; }
+        
     }
 }
