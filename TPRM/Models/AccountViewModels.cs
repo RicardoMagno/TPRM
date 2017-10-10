@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TPRM.Models
 {
@@ -65,6 +66,11 @@ namespace TPRM.Models
     public class RegisterViewModel
     {
         [Required]
+        [StringLength(80)]
+        [Display(Name = "Nome")]
+        public string Name { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -79,10 +85,17 @@ namespace TPRM.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [ForeignKey("Empresa")]
+        [Required]
+        [Display(Name = "Empresa")]
+        public int EmpresaID { get; set; }
+        
+        public virtual Empresa Empresa { get; set; }
     }
 
     public class ResetPasswordViewModel
-    {
+    {        
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

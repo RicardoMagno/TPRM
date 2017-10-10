@@ -39,8 +39,8 @@ namespace TPRM.Controllers
         // GET: Transacoes/Create
         public ActionResult Create()
         {
-            ViewBag.EmpresaContratadaID = new SelectList(db.Empresas, "EmpresaID", "CNPJ");
-            ViewBag.EmpresaContratanteID = new SelectList(db.Empresas, "EmpresaID", "CNPJ");
+            ViewBag.EmpresaContratadaID = new SelectList(db.Empresas, "EmpresaID", "RazaoSocial");
+            ViewBag.EmpresaContratanteID = new SelectList(db.Empresas, "EmpresaID", "RazaoSocial");
             ViewBag.TipoServicoID = new SelectList(db.Servicos, "ServicoID", "TipoServico");
             ViewBag.StatusTransacaoID = new SelectList(db.StatusFluxoTransacoes, "StatusID", "DescricaoStatus");
             return View();

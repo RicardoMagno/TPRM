@@ -1,5 +1,7 @@
 namespace TPRM.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -27,6 +29,21 @@ namespace TPRM.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            //context.Roles.AddOrUpdate(r => r.Name,
+            //    new IdentityRole { Name = "Admin" },
+            //    new IdentityRole { Name = "Cliente" });
+
+            var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            string[] roleNames = { "Admin", "Cliente", "Usuario" };
+            IdentityResult roleResult;
+            foreach(var roleName in roleNames)
+            {
+                if (!RoleManager.RoleExists(roleName))
+                {
+                    roleResult = RoleManager.Create(new IdentityRole(roleName));
+                }
+            }
         }
     }
 }
