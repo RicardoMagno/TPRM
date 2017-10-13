@@ -77,7 +77,7 @@ namespace TPRM.Controllers
                          select a).Take(1);
 
                 Transacao t = c.Single();
-                DebitoEmpresasController.CreateDebitoEmpresa(t, db);
+                DebitoClientesController.CreateDebitoClientes(t, db);
 
                 return RedirectToAction("Index");
             }
@@ -96,7 +96,7 @@ namespace TPRM.Controllers
         }
         
         private string GetUserID()
-        {
+        {            
             return User.Identity.GetUserId();
         }
 

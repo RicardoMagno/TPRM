@@ -64,7 +64,7 @@ namespace TPRM.Controllers
             return View(debitoEmpresa);
         }
 
-        public static void CreateDebitoEmpresa(Transacao transacao, ApplicationDbContext db)
+        public static void CreateDebitoCliente(Transacao transacao, ApplicationDbContext db)
         {
             decimal ValorUnitarioTransacao = Convert.ToDecimal(ConfigurationManager.AppSettings["ValorUnitarioTransacao"].ToString());
             DebitoEmpresa debitoEmpresa = new DebitoEmpresa();

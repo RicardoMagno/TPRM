@@ -190,6 +190,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DebitoClientesController.cs" />
     <Compile Include="Controllers\DebitoEmpresasController.cs" />
     <Compile Include="Controllers\EmpresasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -245,8 +246,13 @@
     <Compile Include="Migrations\201710111930364_Inicial_5_1.Designer.cs">
       <DependentUpon>201710111930364_Inicial_5_1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710131703387_Inicial_6.cs" />
+    <Compile Include="Migrations\201710131703387_Inicial_6.Designer.cs">
+      <DependentUpon>201710131703387_Inicial_6.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\DebitoCliente.cs" />
     <Compile Include="Models\DebitoEmpresa.cs" />
     <Compile Include="Models\Empresa.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -340,6 +346,11 @@
     <Content Include="Views\DebitoEmpresas\Details.cshtml" />
     <Content Include="Views\DebitoEmpresas\Edit.cshtml" />
     <Content Include="Views\DebitoEmpresas\Index.cshtml" />
+    <Content Include="Views\DebitoClientes\Create.cshtml" />
+    <Content Include="Views\DebitoClientes\Delete.cshtml" />
+    <Content Include="Views\DebitoClientes\Details.cshtml" />
+    <Content Include="Views\DebitoClientes\Edit.cshtml" />
+    <Content Include="Views\DebitoClientes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -393,6 +404,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710111930364_Inicial_5_1.resx">
       <DependentUpon>201710111930364_Inicial_5_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710131703387_Inicial_6.resx">
+      <DependentUpon>201710131703387_Inicial_6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

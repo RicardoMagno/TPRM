@@ -1,0 +1,50 @@
+﻿@model TPRM.Models.DebitoCliente
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DebitoCliente</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Empresa.CNPJ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empresa.CNPJ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Transacao.DescricaoTransacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Transacao.DescricaoTransacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorDebito)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValorDebito)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DebitoClienteID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
