@@ -49,10 +49,15 @@ namespace TPRM.Models
         [Required]
         public int StatusTransacaoID { get; set; }
 
+        [ForeignKey("ApplicationUser")]
+        [Column(Order = 7)]
+        public string UsuarioID { get; set; }
+
         public virtual StatusFluxoTransacao StatusTransacao { get; set; }
         public virtual Empresa EmpresaContratante { get; set; }
         public virtual Empresa EmpresaContratada { get; set; }
         public virtual Servico Servico { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
 
     }
 }

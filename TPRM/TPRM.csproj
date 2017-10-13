@@ -190,6 +190,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DebitoEmpresasController.cs" />
     <Compile Include="Controllers\EmpresasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -236,8 +237,17 @@
     <Compile Include="Migrations\201710102019389_Inicial_4.Designer.cs">
       <DependentUpon>201710102019389_Inicial_4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710111726528_Inicial_5.cs" />
+    <Compile Include="Migrations\201710111726528_Inicial_5.Designer.cs">
+      <DependentUpon>201710111726528_Inicial_5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710111930364_Inicial_5_1.cs" />
+    <Compile Include="Migrations\201710111930364_Inicial_5_1.Designer.cs">
+      <DependentUpon>201710111930364_Inicial_5_1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\DebitoEmpresa.cs" />
     <Compile Include="Models\Empresa.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -325,6 +335,11 @@
     <Content Include="Views\Transacoes\Edit.cshtml" />
     <Content Include="Views\Transacoes\Index.cshtml" />
     <Content Include="Views\Empresas\Error.cshtml" />
+    <Content Include="Views\DebitoEmpresas\Create.cshtml" />
+    <Content Include="Views\DebitoEmpresas\Delete.cshtml" />
+    <Content Include="Views\DebitoEmpresas\Details.cshtml" />
+    <Content Include="Views\DebitoEmpresas\Edit.cshtml" />
+    <Content Include="Views\DebitoEmpresas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -372,6 +387,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710102019389_Inicial_4.resx">
       <DependentUpon>201710102019389_Inicial_4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710111726528_Inicial_5.resx">
+      <DependentUpon>201710111726528_Inicial_5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710111930364_Inicial_5_1.resx">
+      <DependentUpon>201710111930364_Inicial_5_1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

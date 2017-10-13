@@ -18,8 +18,8 @@ namespace TPRM.Controllers
 
         // GET: Transacoes
         public ActionResult Index()
-        {
-            var transacoes = db.Transacoes.Include(t => t.EmpresaContratada).Include(t => t.EmpresaContratante).Include(t => t.Servico).Include(t => t.StatusTransacao);
+        {            
+            var transacoes = db.Transacoes.Include(t => t.EmpresaContratante).Include(t => t.EmpresaContratada).Include(t => t.Servico).Include(t => t.StatusTransacao);
             return View(transacoes.ToList());
         }
 
@@ -41,13 +41,13 @@ namespace TPRM.Controllers
         // GET: Transacoes/Create
         public ActionResult Create()
         {
-            // TODO
-            var idUserLogged = User.Identity.GetUserId();
-            var usuarioEmpresa = from b in db.UsuarioEmpresas
+            var idUserLogged = GetUserID();
+
+            var idUsuarioEmpresa = from b in db.UsuarioEmpresas
                         where b.ApplicationUserID.Equals(idUserLogged)
                         select b;
 
-            Empresa empresa = db.Empresas.Find(usuarioEmpresa.Single().EmpresaID);
+            Empresa empresa = db.Empresas.Find(idUsuarioEmpresa.Single().EmpresaID);
             
             ViewBag.EmpresaContratanteID = new SelectList(db.Empresas.Where(e => e.EmpresaID == empresa.EmpresaID), "EmpresaID", "RazaoSocial");
             ViewBag.EmpresaContratadaID = new SelectList(db.Empresas.Where(e => e.EmpresaID != empresa.EmpresaID), "EmpresaID", "RazaoSocial");
@@ -65,16 +65,39 @@ namespace TPRM.Controllers
         {
             if (ModelState.IsValid)
             {
+                InsertUserIdTransacao(transacao);
                 db.Transacoes.Add(transacao);
                 db.SaveChanges();
+
+                //TODO
+                var userID = GetUserID();
+                var c = (from a in db.Transacoes
+                         where a.UsuarioID.Equals(userID)
+                         orderby a.TransacaoID descending
+                         select a).Take(1);
+
+                Transacao t = c.Single();
+                DebitoEmpresasController.CreateDebitoEmpresa(t, db);
+
                 return RedirectToAction("Index");
-            }            
-            
-            ViewBag.EmpresaContratadaID = new SelectList(db.Empresas, "EmpresaID", "RazaoSocial", transacao.EmpresaContratadaID);
+            }
+
             ViewBag.EmpresaContratanteID = new SelectList(db.Empresas, "EmpresaID", "RazaoSocial", transacao.EmpresaContratanteID);
+            ViewBag.EmpresaContratadaID = new SelectList(db.Empresas, "EmpresaID", "RazaoSocial", transacao.EmpresaContratadaID);            
             ViewBag.TipoServicoID = new SelectList(db.Servicos, "ServicoID", "TipoServico", transacao.TipoServicoID);
             ViewBag.StatusTransacaoID = new SelectList(db.StatusFluxoTransacoes, "StatusID", "DescricaoStatus", transacao.StatusTransacaoID);
             return View(transacao);
+        }
+        
+        private Transacao InsertUserIdTransacao(Transacao transacao)
+        {
+            transacao.UsuarioID = GetUserID();
+            return transacao;
+        }
+        
+        private string GetUserID()
+        {
+            return User.Identity.GetUserId();
         }
 
         // GET: Transacoes/Edit/5
@@ -89,8 +112,8 @@ namespace TPRM.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.EmpresaContratadaID = new SelectList(db.Empresas, "EmpresaID", "RazaoSocial", transacao.EmpresaContratadaID);
             ViewBag.EmpresaContratanteID = new SelectList(db.Empresas, "EmpresaID", "RazaoSocial", transacao.EmpresaContratanteID);
+            ViewBag.EmpresaContratadaID = new SelectList(db.Empresas, "EmpresaID", "RazaoSocial", transacao.EmpresaContratadaID);            
             ViewBag.TipoServicoID = new SelectList(db.Servicos, "ServicoID", "TipoServico", transacao.TipoServicoID);
             ViewBag.StatusTransacaoID = new SelectList(db.StatusFluxoTransacoes, "StatusID", "DescricaoStatus", transacao.StatusTransacaoID);
             return View(transacao);
@@ -109,8 +132,8 @@ namespace TPRM.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.EmpresaContratadaID = new SelectList(db.Empresas, "EmpresaID", "CNPJ", transacao.EmpresaContratadaID);
             ViewBag.EmpresaContratanteID = new SelectList(db.Empresas, "EmpresaID", "CNPJ", transacao.EmpresaContratanteID);
+            ViewBag.EmpresaContratadaID = new SelectList(db.Empresas, "EmpresaID", "CNPJ", transacao.EmpresaContratadaID);
             ViewBag.TipoServicoID = new SelectList(db.Servicos, "ServicoID", "TipoServico", transacao.TipoServicoID);
             ViewBag.StatusTransacaoID = new SelectList(db.StatusFluxoTransacoes, "StatusID", "DescricaoStatus", transacao.StatusTransacaoID);
             return View(transacao);
