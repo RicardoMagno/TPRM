@@ -28,22 +28,22 @@ namespace TPRM.Migrations
             //      new Person { FullName = "Brice Lambson" },
             //      new Person { FullName = "Rowan Miller" }
             //    );
-            //
 
             //context.Roles.AddOrUpdate(r => r.Name,
             //    new IdentityRole { Name = "Admin" },
-            //    new IdentityRole { Name = "Cliente" });
-
-            var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-            string[] roleNames = { "Admin", "Cliente", "Usuario" };
-            IdentityResult roleResult;
-            foreach(var roleName in roleNames)
-            {
-                if (!RoleManager.RoleExists(roleName))
-                {
-                    roleResult = RoleManager.Create(new IdentityRole(roleName));
-                }
-            }
+            //    new IdentityRole { Name = "Cliente" },
+            //    new IdentityRole { Name = "Analista" });
+            
+            //var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            //string[] roleNames = { "Admin", "Cliente", "Usuario" };
+            //IdentityResult roleResult;
+            //foreach(var roleName in roleNames)
+            //{
+            //    if (!RoleManager.RoleExists(roleName))
+            //    {
+            //        roleResult = RoleManager.Create(new IdentityRole(roleName));
+            //    }
+            //}
         }
     }
 }
