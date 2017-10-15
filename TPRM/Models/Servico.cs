@@ -21,7 +21,7 @@ namespace TPRM.Models
 
         [Required]
         [Display(Name = "Valor do Serviço")]
-        public double ValorServico { get; set; }
+        public decimal ValorServico { get; set; }
 
         [Required]
         [StringLength(200, MinimumLength = 10)]

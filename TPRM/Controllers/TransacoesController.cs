@@ -117,6 +117,11 @@ namespace TPRM.Controllers
             {
                 return HttpNotFound();
             }
+
+            Servico servico = db.Servicos.Find(transacao.TipoServicoID);
+            ViewBag.ValorServico = servico.ValorServico;
+            ViewBag.DescricaoServico = servico.DescricaoServico;
+
             ViewBag.EmpresaContratanteID = new SelectList(db.Empresas.Where(e => e.EmpresaID == transacao.EmpresaContratanteID), "EmpresaID", "RazaoSocial", transacao.EmpresaContratanteID);
             ViewBag.EmpresaContratadaID = new SelectList(db.Empresas.Where(e => e.EmpresaID == transacao.EmpresaContratadaID), "EmpresaID", "RazaoSocial", transacao.EmpresaContratadaID);            
             ViewBag.TipoServicoID = new SelectList(db.Servicos.Where(s => s.ServicoID == transacao.TipoServicoID), "ServicoID", "TipoServico", transacao.TipoServicoID);
