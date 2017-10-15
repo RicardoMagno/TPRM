@@ -54,7 +54,7 @@ namespace TPRM.Controllers
             
             ViewBag.EmpresaContratanteID = new SelectList(db.Empresas.Where(e => e.EmpresaID == empresa.EmpresaID), "EmpresaID", "RazaoSocial");
             ViewBag.EmpresaContratadaID = new SelectList(db.Empresas.Where(e => e.EmpresaID != empresa.EmpresaID), "EmpresaID", "RazaoSocial");
-            ViewBag.TipoServicoID = new SelectList(db.Servicos, "ServicoID", "TipoServico");
+            ViewBag.TipoServicoID = new SelectList(db.Servicos.Where(s => s.DisponibilidadeServico == true), "ServicoID", "TipoServico");
             ViewBag.StatusTransacaoID = new SelectList(db.StatusFluxoTransacoes.Where(s => s.DescricaoStatus.Contains("Pendente")), "StatusID", "DescricaoStatus");
             return View();
         }
