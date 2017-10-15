@@ -17,7 +17,7 @@ namespace TPRM.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Transacoes
-        [Authorize(Roles = "Admin, Cliente")]
+        [Authorize(Roles = "Admin, Analista, Cliente")]
         public ActionResult Index()
         {            
             var transacoes = db.Transacoes.Include(t => t.EmpresaContratante).Include(t => t.EmpresaContratada).Include(t => t.Servico).Include(t => t.StatusTransacao);
@@ -105,7 +105,7 @@ namespace TPRM.Controllers
         }
 
         // GET: Transacoes/Edit/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Analista")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -117,9 +117,9 @@ namespace TPRM.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.EmpresaContratanteID = new SelectList(db.Empresas, "EmpresaID", "RazaoSocial", transacao.EmpresaContratanteID);
-            ViewBag.EmpresaContratadaID = new SelectList(db.Empresas, "EmpresaID", "RazaoSocial", transacao.EmpresaContratadaID);            
-            ViewBag.TipoServicoID = new SelectList(db.Servicos, "ServicoID", "TipoServico", transacao.TipoServicoID);
+            ViewBag.EmpresaContratanteID = new SelectList(db.Empresas.Where(e => e.EmpresaID == transacao.EmpresaContratanteID), "EmpresaID", "RazaoSocial", transacao.EmpresaContratanteID);
+            ViewBag.EmpresaContratadaID = new SelectList(db.Empresas.Where(e => e.EmpresaID == transacao.EmpresaContratadaID), "EmpresaID", "RazaoSocial", transacao.EmpresaContratadaID);            
+            ViewBag.TipoServicoID = new SelectList(db.Servicos.Where(s => s.ServicoID == transacao.TipoServicoID), "ServicoID", "TipoServico", transacao.TipoServicoID);
             ViewBag.StatusTransacaoID = new SelectList(db.StatusFluxoTransacoes, "StatusID", "DescricaoStatus", transacao.StatusTransacaoID);
             return View(transacao);
         }
@@ -129,7 +129,7 @@ namespace TPRM.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Analista")]
         public ActionResult Edit([Bind(Include = "TransacaoID,EmpresaContratanteID,EmpresaContratadaID,TipoServicoID,ValorTransacao,DescricaoTransacao,StatusTransacaoID")] Transacao transacao)
         {
             if (ModelState.IsValid)

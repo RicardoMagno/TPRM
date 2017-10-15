@@ -6,9 +6,13 @@
 
 <h2>Transações</h2>
 
-<p>
-    @Html.ActionLink("Cadastrar Transação", "Create")
-</p>
+@if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Cliente")))
+{
+    <p>
+        @Html.ActionLink("Cadastrar Transação", "Create")
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
@@ -52,12 +56,18 @@
         <td>
             @Html.DisplayFor(modelItem => item.StatusTransacao.DescricaoStatus)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TransacaoID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TransacaoID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TransacaoID })
-        </td>
-    </tr>
+        @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Analista")))
+        {
+            <td>
+                @Html.ActionLink("Analisar", "Edit", new { id = item.TransacaoID }) 
+            </td>
+        }
+        else
+        {
+            <td></td>
+        }
+
+</tr>
 }
 
 </table>
