@@ -138,17 +138,18 @@ namespace TPRM.Controllers
 
         //
         // GET: /Account/Register
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         public ActionResult Register()
         {
             ViewBag.EmpresaID = new SelectList(db.Empresas, "EmpresaID", "RazaoSocial");
+            ViewBag.IdentityRoleID = new SelectList(db.Roles, "Id", "Name");
             return View();
         }
 
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
@@ -158,7 +159,8 @@ namespace TPRM.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    UserManager.AddToRole(user.Id, "Cliente");
+                    var identityRole = db.Roles.Find(model.IdentityRoleID);
+                    UserManager.AddToRole(user.Id, identityRole.Name);
 
                     var usuarioEmpresa = new UsuarioEmpresa
                     { ApplicationUserID = user.Id, EmpresaID = model.EmpresaID };

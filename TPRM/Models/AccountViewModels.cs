@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -90,6 +91,13 @@ namespace TPRM.Models
         [Required]
         [Display(Name = "Empresa")]
         public int EmpresaID { get; set; }
+        
+        [ForeignKey("IdentityRole")]
+        [Required]
+        [Display(Name = "Função")]
+        public string IdentityRoleID { get; set; }
+                
+        public virtual IdentityRole IdentityRole { get; set; }
         
         public virtual Empresa Empresa { get; set; }
     }

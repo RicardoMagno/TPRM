@@ -17,6 +17,7 @@ namespace TPRM.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Transacoes
+        [Authorize(Roles = "Admin, Cliente")]
         public ActionResult Index()
         {            
             var transacoes = db.Transacoes.Include(t => t.EmpresaContratante).Include(t => t.EmpresaContratada).Include(t => t.Servico).Include(t => t.StatusTransacao);
@@ -24,6 +25,7 @@ namespace TPRM.Controllers
         }
 
         // GET: Transacoes/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -39,6 +41,7 @@ namespace TPRM.Controllers
         }
 
         // GET: Transacoes/Create
+        [Authorize(Roles = "Admin, Cliente")]
         public ActionResult Create()
         {
             var idUserLogged = GetUserID();
@@ -61,6 +64,7 @@ namespace TPRM.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Cliente")]
         public ActionResult Create([Bind(Include = "TransacaoID,EmpresaContratanteID,EmpresaContratadaID,TipoServicoID,ValorTransacao,DescricaoTransacao,StatusTransacaoID")] Transacao transacao)
         {
             if (ModelState.IsValid)
@@ -101,6 +105,7 @@ namespace TPRM.Controllers
         }
 
         // GET: Transacoes/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -124,6 +129,7 @@ namespace TPRM.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "TransacaoID,EmpresaContratanteID,EmpresaContratadaID,TipoServicoID,ValorTransacao,DescricaoTransacao,StatusTransacaoID")] Transacao transacao)
         {
             if (ModelState.IsValid)
@@ -140,6 +146,7 @@ namespace TPRM.Controllers
         }
 
         // GET: Transacoes/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -157,6 +164,7 @@ namespace TPRM.Controllers
         // POST: Transacoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Transacao transacao = db.Transacoes.Find(id);

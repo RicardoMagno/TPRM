@@ -15,12 +15,14 @@ namespace TPRM.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: StatusFluxoTransacoes
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View(db.StatusFluxoTransacoes.ToList());
         }
 
         // GET: StatusFluxoTransacoes/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace TPRM.Controllers
         }
 
         // GET: StatusFluxoTransacoes/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +49,7 @@ namespace TPRM.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "StatusID,DescricaoStatus")] StatusFluxoTransacao statusFluxoTransacao)
         {
             if (ModelState.IsValid)
@@ -59,6 +63,7 @@ namespace TPRM.Controllers
         }
 
         // GET: StatusFluxoTransacoes/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +83,7 @@ namespace TPRM.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "StatusID,DescricaoStatus")] StatusFluxoTransacao statusFluxoTransacao)
         {
             if (ModelState.IsValid)
@@ -90,6 +96,7 @@ namespace TPRM.Controllers
         }
 
         // GET: StatusFluxoTransacoes/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +114,7 @@ namespace TPRM.Controllers
         // POST: StatusFluxoTransacoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             StatusFluxoTransacao statusFluxoTransacao = db.StatusFluxoTransacoes.Find(id);

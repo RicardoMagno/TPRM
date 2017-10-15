@@ -33,7 +33,21 @@ namespace TPRM.Controllers
                                       };
 
             return View(listaDebitoClientes.ToList());
-        }        
+        }
+
+        public static void CreateDebitoClientes(Transacao transacao, ApplicationDbContext db)
+        {
+            decimal ValorUnitarioTransacao = Convert.ToDecimal(ConfigurationManager.AppSettings["ValorUnitarioTransacao"].ToString());
+            DebitoCliente debitoCliente = new DebitoCliente();
+            debitoCliente.EmpresaID = transacao.EmpresaContratanteID;
+            debitoCliente.TransacaoID = transacao.TransacaoID;
+            debitoCliente.UsuarioID = transacao.UsuarioID;
+            debitoCliente.ValorDebito = ValorUnitarioTransacao;
+
+            db.DebitoClientes.Add(debitoCliente);
+            db.SaveChanges();
+
+        }
 
         protected override void Dispose(bool disposing)
         {
