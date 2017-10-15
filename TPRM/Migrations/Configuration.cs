@@ -6,6 +6,7 @@ namespace TPRM.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<TPRM.Models.ApplicationDbContext>
     {
@@ -17,33 +18,39 @@ namespace TPRM.Migrations
 
         protected override void Seed(TPRM.Models.ApplicationDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-
+            ////// 1° Bloco a ser executado
             //context.Roles.AddOrUpdate(r => r.Name,
             //    new IdentityRole { Name = "Admin" },
             //    new IdentityRole { Name = "Cliente" },
             //    new IdentityRole { Name = "Analista" });
-            
-            //var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-            //string[] roleNames = { "Admin", "Cliente", "Usuario" };
-            //IdentityResult roleResult;
-            //foreach(var roleName in roleNames)
-            //{
-            //    if (!RoleManager.RoleExists(roleName))
+
+            //context.Empresas.AddOrUpdate(
+            //  e => e.CNPJ,
+            //  new Empresa { CNPJ = "19.288.322/0001-43", RazaoSocial = "TPRM" }
+            //);
+
+            //context.Users.AddOrUpdate(u => u.Email,
+            //    new ApplicationUser
             //    {
-            //        roleResult = RoleManager.Create(new IdentityRole(roleName));
-            //    }
-            //}
+            //        Id = "39ae9b6d-ff30-4dd9-bbfa-bedcf10a2ad8",
+            //        Email = "adm@email.com",
+            //        PasswordHash = "AE+TOBtYUytn7wUPY3/Qc3T0apLm+SoJUmeVTKBQFI2GGqCX6YrqVl2cfQi0jHWiHQ==", // Pass@123
+            //        UserName = "Adm"
+            //    });
+            ////// Fim 1° Bloco
+
+
+            ////// 2° Bloco a ser executado
+            //var store = new UserStore<ApplicationUser>(context);
+            //var manager = new UserManager<ApplicationUser>(store);
+            //manager.AddToRole("39ae9b6d-ff30-4dd9-bbfa-bedcf10a2ad8", "Admin");
+
+            //var empresa = context.Empresas.First();
+            //context.UsuarioEmpresas.AddOrUpdate(ue => ue.ApplicationUserID,
+            //    new UsuarioEmpresa { ApplicationUserID = "39ae9b6d-ff30-4dd9-bbfa-bedcf10a2ad8", EmpresaID = empresa.EmpresaID });
+
+            ////// Fim 2° Bloco
+
         }
     }
 }
