@@ -36,4 +36,11 @@ namespace TPRM.Models
         public virtual ApplicationUser ApplicationUser { get; set; }
 
     }
+
+    public class CustomDebitoCliente
+    {
+        public string UsuarioID { get; set; }
+        public string UserName { get; set; }
+        public decimal ValorDebito { get; set; }
+    }
 }
